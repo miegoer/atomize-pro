@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import AddSomeSimple from "./AddSomeSimple.jsx";
 import AddSomeBars from "./AddSomeBars.tsx";
-import AddSomeLevels from "./AddSomeLevels.jsx";
+import AddSomeLevels from "./AddSomeLevels.tsx";
 import AddSomeSets from "./AddSomeSets.jsx";
 import AddSomeMixed from "./AddSomeMixed.jsx";
 import {createGoal, insertListPosition} from '../../ApiService.tsx'

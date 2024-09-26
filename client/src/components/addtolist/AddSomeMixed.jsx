@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddSomeSimple from "./AddSomeSimple";
-import AddSomeLevels from "./AddSomeLevels";
+import AddSomeLevels from "./AddSomeLevels.tsx";
 import AddSomeSets from "./AddSomeSets";
 import AddSomeBars from "./AddSomeBars.tsx";
 import '../../styles/AddSome.css';
