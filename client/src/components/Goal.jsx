@@ -1,4 +1,4 @@
-import SimpleGoal from "./templates/SimpleGoal.jsx";
+import SimpleGoal from "./templates/SimpleGoal.tsx";
 import ProgressBar from "./templates/ProgressBar.tsx";
 import LevelsBlock from "./templates/LevelsBlock.tsx";
 import Sets from "./templates/Sets.tsx";

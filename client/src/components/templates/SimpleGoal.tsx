@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import '../../styles/SimpleGoal.css';
-import { updateGoalProgress } from "../../ApiService.tsx";
+import { updateGoalProgress } from "../../ApiService";
 
-export default function SimpleGoal({goal}) {
+export default function SimpleGoal({goal}: any) {
 
-    const [goalStatus, setGoalStatus] = useState(goal.complete);
+    const [goalStatus, setGoalStatus] = useState<any>(goal.complete);
 
     useEffect(() => {
         updateGoalProgress(goal.name, goal.type, goalStatus);
@@ -16,7 +16,7 @@ export default function SimpleGoal({goal}) {
         }
     }
 
-    const renderSimpleGoal = (goal) => {
+    const renderSimpleGoal = (goal: any) => {
         const goalClass = goal.color === 'red' ? 'simple-red' : goal.color === 'purple' ? 'simple-purple' : 'simple-orange';
         return (
             <div className='simple-container'>
@@ -24,11 +24,6 @@ export default function SimpleGoal({goal}) {
                     <div className={`statusLight-simple ${goalStatus ? 'isDone' : 'isOff'}`} key={goal.name}></div>
                     <div className="simpleGoalText" onClick={completeGoal}>{goal.name}</div>
                 </div>
-                {/* <div className="more-options">
-                    <img src={Skip} className={`options ${goalHovered ? null : 'hidden' }`} />
-                    <img src={Edit} className={`options ${goalHovered ? null : 'hidden' }`} />
-                    <img src={Delete} className={`options ${goalHovered ? null : 'hidden' }`} />
-                </div> */}
             </div>
         );
     };
