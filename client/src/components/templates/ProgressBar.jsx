@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import '../../styles/ProgressBar.css';
-import { updateGoalProgress } from "../../ApiService";
+import { updateGoalProgress } from "../../ApiService.tsx";
 
 export default function ProgressBar({ goal }) {
     const [current, setCurrent] = useState(goal.current);

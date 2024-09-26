@@ -5,7 +5,7 @@ import AddSomeBars from "./AddSomeBars";
 import AddSomeLevels from "./AddSomeLevels";
 import AddSomeSets from "./AddSomeSets";
 import AddSomeMixed from "./AddSomeMixed";
-import {createGoal, insertListPosition} from '../../ApiService.jsx'
+import {createGoal, insertListPosition} from '../../ApiService.tsx'
 
 export default function AddSomeGoals({listName, template, selectedTab, loadGoals}) {
 

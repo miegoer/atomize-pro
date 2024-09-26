@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from "react";
-import { updateGoalProgress } from "../../ApiService";
+import { updateGoalProgress } from "../../ApiService.tsx";
 
 export default function Sets({goal}) {
 

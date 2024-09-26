@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { updateGoalProgress } from "../../ApiService";
+import { updateGoalProgress } from "../../ApiService.tsx";
 import '../../styles/LevelsBlock.css'
 
 export default function LevelsBlock({ goal }) {
