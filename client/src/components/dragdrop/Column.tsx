@@ -1,6 +1,6 @@
 import './Column.css';
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { Task } from "./Task";
+import { Task } from "./Task.tsx";
 
 export const Column = ({tasks}: any) => {
     return (
