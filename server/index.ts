@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
-import router from './routes/router';
+import goalRoutes from './routes/goal.routes';
+import tabRoutes from './routes/tab.routes';
 
 const corsOptions: CorsOptions = {
   origin: 'http://localhost:5173',
@@ -14,7 +15,8 @@ const PORT: string | number = process.env.SERVER_PORT || 3000;
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/api', router);
+app.use('/api', goalRoutes);
+app.use('/api', tabRoutes);
 
 app.listen(PORT, (err?: Error) => {
   if (err) {
