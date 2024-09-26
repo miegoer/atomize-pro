@@ -4,7 +4,7 @@ import AddSomeSimple from "./AddSomeSimple.jsx";
 import AddSomeBars from "./AddSomeBars.tsx";
 import AddSomeLevels from "./AddSomeLevels.tsx";
 import AddSomeSets from "./AddSomeSets.jsx";
-import AddSomeMixed from "./AddSomeMixed.jsx";
+import AddSomeMixed from "./AddSomeMixed.tsx";
 import {createGoal, insertListPosition} from '../../ApiService.tsx'
 
 interface AddSomeGoalsProps {

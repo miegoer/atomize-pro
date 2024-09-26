@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from "react";
-import AddSomeSimple from "./AddSomeSimple";
+import { useState, useEffect } from "react";
+import AddSomeSimple from "./AddSomeSimple.jsx";
 import AddSomeLevels from "./AddSomeLevels.tsx";
-import AddSomeSets from "./AddSomeSets";
+import AddSomeSets from "./AddSomeSets.jsx";
 import AddSomeBars from "./AddSomeBars.tsx";
 import '../../styles/AddSome.css';
 
-export default function AddSomeMixed({listName, finalizeGoals, selectedTab}) {
+interface AddSomeMixedProps {
+    listName: any
+    finalizeGoals: any
+    selectedTab: any
+}
+
+export default function AddSomeMixed(props: AddSomeMixedProps) {
 
     // This component has not yet been updated to reflect changes in other goal AddSome components.
 
-    const [goals, setGoals] = useState([])
+    const [goals, setGoals] = useState<any>([])
 
-    const [firstBlock, setFirstBlock] = useState('');
-    const [secondBlock, setSecondBlock] = useState('');
-    const [thirdBlock, setThirdBlock] = useState('');
+    const [firstBlock, setFirstBlock] = useState<any>('');
+    const [secondBlock, setSecondBlock] = useState<any>('');
+    const [thirdBlock, setThirdBlock] = useState<any>('');
 
     useEffect(() => {
-        finalizeGoals(goals);
+        props.finalizeGoals(goals);
       }, [goals])
 
     return (
@@ -30,7 +36,7 @@ export default function AddSomeMixed({listName, finalizeGoals, selectedTab}) {
                 <span className="goal-option-button" onClick={() => setFirstBlock('Set')}>Set</span>
             </div>
         </div> : null}
-        { firstBlock === 'Simple List' ? <><AddSomeSimple listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/><br></br></> : firstBlock === 'Progress Bar' ? <AddSomeBars listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : firstBlock === 'Levels' ? <AddSomeLevels listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : firstBlock === 'Set' ? <AddSomeSets listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : null}
+        { firstBlock === 'Simple List' ? <><AddSomeSimple listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/><br></br></> : firstBlock === 'Progress Bar' ? <AddSomeBars listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : firstBlock === 'Levels' ? <AddSomeLevels listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : firstBlock === 'Set' ? <AddSomeSets listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : null}
         { secondBlock ? <div className="section-header">{secondBlock}</div> : null }
         {!secondBlock ? <div className="second-block add"><div className="block-text">+ Add Block</div>
             <div className="goal-options">
@@ -40,7 +46,7 @@ export default function AddSomeMixed({listName, finalizeGoals, selectedTab}) {
                 <span className="goal-option-button" onClick={() => setSecondBlock('Set')}>Set</span>
             </div>
         </div> : null}
-        { secondBlock === 'Simple List' ? <><AddSomeSimple listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/><br></br></> : secondBlock === 'Progress Bar' ? <AddSomeBars listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : secondBlock === 'Levels' ? <AddSomeLevels listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : secondBlock === 'Set' ? <AddSomeSets listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : null}
+        { secondBlock === 'Simple List' ? <><AddSomeSimple listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/><br></br></> : secondBlock === 'Progress Bar' ? <AddSomeBars listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : secondBlock === 'Levels' ? <AddSomeLevels listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : secondBlock === 'Set' ? <AddSomeSets listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : null}
         { thirdBlock ? <div className="section-header">{thirdBlock}</div> : null }
         {!thirdBlock ? <div className="third-block add"><div className="block-text">+ Add Block</div>
             <div className="goal-options">
@@ -50,7 +56,7 @@ export default function AddSomeMixed({listName, finalizeGoals, selectedTab}) {
                 <span className="goal-option-button" onClick={() => setThirdBlock('Set')}>Set</span>
             </div>
         </div> : null}
-        { thirdBlock === 'Simple List' ? <><AddSomeSimple listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/><br></br></> : thirdBlock === 'Progress Bar' ? <AddSomeBars listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : thirdBlock === 'Levels' ? <AddSomeLevels listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : thirdBlock === 'Set' ? <AddSomeSets listName={listName} selectedTab={selectedTab} finalizeGoals={finalizeGoals}/> : null}
+        { thirdBlock === 'Simple List' ? <><AddSomeSimple listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/><br></br></> : thirdBlock === 'Progress Bar' ? <AddSomeBars listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : thirdBlock === 'Levels' ? <AddSomeLevels listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : thirdBlock === 'Set' ? <AddSomeSets listName={props.listName} selectedTab={props.selectedTab} finalizeGoals={props.finalizeGoals}/> : null}
         </>
     )
 }
