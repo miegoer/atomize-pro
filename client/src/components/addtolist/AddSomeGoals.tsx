@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import AddSomeSimple from "./AddSomeSimple.jsx";
+import AddSomeSimple from "./AddSomeSimple.tsx";
 import AddSomeBars from "./AddSomeBars.tsx";
 import AddSomeLevels from "./AddSomeLevels.tsx";
 import AddSomeSets from "./AddSomeSets.tsx";

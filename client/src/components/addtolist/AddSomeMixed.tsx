@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AddSomeSimple from "./AddSomeSimple.jsx";
+import AddSomeSimple from "./AddSomeSimple.tsx";
 import AddSomeLevels from "./AddSomeLevels.tsx";
 import AddSomeSets from "./AddSomeSets.tsx";
 import AddSomeBars from "./AddSomeBars.tsx";
