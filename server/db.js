@@ -1,9 +1,10 @@
 const { Client } = require('pg');
 
 const client = new Client({
-  user: 'sarajayasuriya',
+  user: 'postgres',
   host: 'localhost',
   database: 'atomizedb',
+  password: 'admin',
   port: 5432,
 });
 
