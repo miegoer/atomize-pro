@@ -1,13 +1,19 @@
-import {React, useState} from "react";
+import { useState } from "react";
 import {DndContext, useDraggable, useDroppable, rectIntersection, pointerWithin} from '@dnd-kit/core';
 import { Column } from "./dragdrop/Column";
 
-function Droppable({ id, children }) {
-    const { setNodeRef } = useDroppable({ id });
+interface DroppableProps {
+    id: any;
+    children: any;
+    className?: any;
+}
+
+function Droppable(props: DroppableProps) {
+    const { setNodeRef } = useDroppable( props.id );
   
     return (
       <div ref={setNodeRef} className="task-slot">
-        {children}
+        {props.children}
       </div>
     );
   }
@@ -19,7 +25,7 @@ export default function HomePlanner() {
     const [start, setStart] = useState(8);
     const [end, setEnd] = useState(18);
 
-    const timeSlots = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    const timeSlots: any = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
     const [slotTasks, setSlotTasks] = useState(
       timeSlots.map(() => null)
@@ -31,15 +37,15 @@ export default function HomePlanner() {
         {id: 2, name: "Write"},
     ])
 
-    const handleDragEnd = event => {
+    const handleDragEnd = (event: any) => {
         const {active, over} = event
         if (!over) return;
 
-        const activeTaskId = parseInt(active.id, 10);
-        const targetSlotId = over.id;
-        const slotIndex = parseInt(targetSlotId.replace("slot-", ""), 10);
+        const activeTaskId: any = parseInt(active.id, 10);
+        const targetSlotId: any = over.id;
+        const slotIndex: any = parseInt(targetSlotId.replace("slot-", ""), 10);
         
-        setSlotTasks((prevSlotTasks) => {
+        setSlotTasks((prevSlotTasks: any) => {
             const updatedSlotTasks = [...prevSlotTasks];
             const draggedTask = tasks.find((task) => task.id === activeTaskId);
             updatedSlotTasks[slotIndex] = draggedTask; 
@@ -51,7 +57,7 @@ export default function HomePlanner() {
         <div className="plan-container">
             <DndContext onDragEnd={handleDragEnd} collisionDetection={rectIntersection}>
                 <div className="day-plan">
-                    {timeSlots.map((time, index) => 
+                    {timeSlots.map((time: any, index: any) => 
                         <div className="plan-row" key={index}>
                             <div className="time-slot" key={time}>{time}:00</div>
                             <Droppable className="task-slot" id={`slot-${index}`}>
