@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
-import goalRoutes from './routes/goal.routes';
-import tabRoutes from './routes/tab.routes';
+import goalRoutes from './src/routes/goal.routes';
+import tabRoutes from './src/routes/tab.routes';
 
 const corsOptions: CorsOptions = {
   origin: 'http://localhost:5173',

@@ -109,7 +109,7 @@ export const updateGoalStatus = async (req: Request, res: Response): Promise<voi
   const { name, type, newValue } = req.body;
   let tableName: string;
   let col: string;
-  let condition?: string;
+  let condition: string;
   let completeUpdate = '';
 
   // Determine the table and column based on the goal type
