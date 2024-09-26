@@ -1,20 +1,30 @@
-const express = require('express');
-const router = express.Router();
-const { saveGoals, saveTab, insertListPos, deleteListPos, getAllTabs, getAllGoals, deleteTab, deleteGoal, updateGoalStatus } = require('./controllers.js');
+import express, { Router } from 'express';
+import {
+  saveGoals,
+  saveTab,
+  insertListPos,
+  deleteListPos,
+  getAllTabs,
+  getAllGoals,
+  deleteTab,
+  deleteGoal,
+  updateGoalStatus
+} from './controllers/controllers';
 
-router.post('/storedgoals', saveGoals)
+const router: Router = express.Router();
+
+router.post('/storedgoals', saveGoals);
 router.get('/storedgoals', getAllGoals);
 router.delete('/storedgoals', deleteGoal);
 
-router.post('/storedgoals/status', updateGoalStatus)
+router.post('/storedgoals/status', updateGoalStatus);
 
-router.post('/tabs', saveTab)
-router.post('/tabs/position', insertListPos)
+router.post('/tabs', saveTab);
+router.post('/tabs/position', insertListPos);
 
 router.get('/tabs', getAllTabs);
 
 router.delete('/tabs/:tabName', deleteTab);
-router.delete('/tabs/:tabName/position/:listName', deleteListPos)
+router.delete('/tabs/:tabName/position/:listName', deleteListPos);
 
-
-module.exports = router;
+export default router;
