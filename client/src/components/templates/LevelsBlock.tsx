@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from "react";
-import { updateGoalProgress } from "../../ApiService.tsx";
+import {useState, useEffect} from "react";
+import { updateGoalProgress } from "../../ApiService.jsx";
 import '../../styles/LevelsBlock.css'
 
-export default function LevelsBlock({ goal }) {
-    const [progress, setProgress] = useState(goal.level);
+export default function LevelsBlock({ goal }: any) {
+    const [progress, setProgress] = useState<any>(goal.level);
 
     useEffect(() => {
         updateGoalProgress(goal.name, goal.type, progress);
     }, [progress]);
 
     const updateProgress = () => {
-        setProgress(prev => (prev < 3 ? prev + 1 : prev));
+        setProgress((prev: any) => (prev < 3 ? prev + 1 : prev));
     };
 
     const goalClass = goal.color === 'pink' ? 'levels-block-pink' : 'levels-block-purple';

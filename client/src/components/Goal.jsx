@@ -1,7 +1,7 @@
 import React from "react";
 import SimpleGoal from "./templates/SimpleGoal.jsx";
 import ProgressBar from "./templates/ProgressBar.jsx";
-import LevelsBlock from "./templates/LevelsBlock.jsx";
+import LevelsBlock from "./templates/LevelsBlock.tsx";
 import Sets from "./templates/Sets.jsx";
 
 export default function Goal({goal, blockCount}) {
