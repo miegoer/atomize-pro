@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import CreateNew from './components/CreateNew';
 import CreateNewList from './components/CreateNewList';
-import CreateNewTab from './components/CreateNewTab';
+import CreateNewTab from './components/CreateNewTab.tsx';
 import CreateNewGoal from './components/CreateNewGoal.jsx';
 import MakeEdits from './components/MakeEdits.jsx';
 import HomePage from './components/HomePage';

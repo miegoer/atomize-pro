@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import Rocket from '../assets/icons/rocket-icon.png';
 import Sprout from '../assets/icons/sprout-icon.png';
@@ -12,20 +12,20 @@ import PiggyBank from '../assets/icons/piggybank-icon.png';
 import Lightning from '../assets/icons/lightning-icon.png';
 import Lightbulb from '../assets/icons/lightbulb-icon.png';
 import PlaneGlobe from '../assets/icons/plane-globe-icon.png';
-import {createTab} from '../ApiService.tsx';
+import {createTab} from '../ApiService';
 
-export default function CreateNewTab({tabs}) {
+export default function CreateNewTab({tabs}: any) {
 
     const navigate = useNavigate();
 
-    const allIcons = [Sprout, Sun, PlaneGlobe, Book, Meal, Barbell, MoneyBag, PiggyBank, Star, Rocket, Lightning, Lightbulb]
+    const allIcons: any[] = [Sprout, Sun, PlaneGlobe, Book, Meal, Barbell, MoneyBag, PiggyBank, Star, Rocket, Lightning, Lightbulb]
     const [chosenIcon, setChosenIcon] = useState('');
     const [tabName, setTabName] = useState('');
     const [tabData, setTabData] = useState({name: tabName, icon: chosenIcon, col_one: null, col_one_b: null, col_two: null, col_two_b: null, col_three: null, col_three_b: null, order_no: tabs.length + 1})
 
-    const handleTabNameChange = (event) => { setTabName(event.target.value) }
+    const handleTabNameChange = (event: any) => { setTabName(event.target.value) }
 
-    const handleChooseIcon = (icon) => {
+    const handleChooseIcon = (icon: any) => {
         setChosenIcon(icon)
     }
 
@@ -41,7 +41,7 @@ export default function CreateNewTab({tabs}) {
         setTabData({...tabData, name: tabName});
       }, [tabName])
 
-    const handleCreateTab = async(tab) => {
+    const handleCreateTab = async(tab: any) => {
         if (!tabName) {
             alert('Please choose a name for your tab');
             return;
@@ -67,7 +67,7 @@ export default function CreateNewTab({tabs}) {
             <input type="text" id="name-tab" value={tabName} onChange={handleTabNameChange}></input>
             <span className="create-tab-text">Choose your tab icon:</span>
             <div className="icon-list">
-                {allIcons.map((icon) => <img src={icon} className={`icon-choice ${chosenIcon === icon ? 'icon-chosen' : 'null'}`} onClick={() => {handleChooseIcon(icon)}}/>)}
+                {allIcons.map((icon: any) => <img src={icon} className={`icon-choice ${chosenIcon === icon ? 'icon-chosen' : 'null'}`} onClick={() => {handleChooseIcon(icon)}}/>)}
             </div>
             <button id="submit-new-tab" onClick={()=> {handleCreateTab(tabData)}}>Create Tab</button>
         </div>
