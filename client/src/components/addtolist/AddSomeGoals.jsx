@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import AddSomeSimple from "./AddSomeSimple";
-import AddSomeBars from "./AddSomeBars";
+import AddSomeBars from "./AddSomeBars.tsx";
 import AddSomeLevels from "./AddSomeLevels";
 import AddSomeSets from "./AddSomeSets";
 import AddSomeMixed from "./AddSomeMixed";

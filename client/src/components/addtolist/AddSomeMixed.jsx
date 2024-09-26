@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddSomeSimple from "./AddSomeSimple";
 import AddSomeLevels from "./AddSomeLevels";
 import AddSomeSets from "./AddSomeSets";
-import AddSomeBars from "./AddSomeBars";
+import AddSomeBars from "./AddSomeBars.tsx";
 import '../../styles/AddSome.css';
 
 export default function AddSomeMixed({listName, finalizeGoals, selectedTab}) {
