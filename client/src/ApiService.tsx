@@ -1,11 +1,10 @@
-import React from "react";
 import axios from "axios";
 
 const BASE_URL = 'http://localhost:3000/api'
 
 // CREATION: Goals, Lists, and Tabs
 
-export const createGoal = async (goal) => {
+export const createGoal = async (goal: any) => {
   try {
       const response = await axios.post(`${BASE_URL}/storedgoals`, goal, {
           headers: { 'Content-Type': 'application/json' }
@@ -13,24 +12,24 @@ export const createGoal = async (goal) => {
       
       console.log('Network request to create goal was sent successfully', response.data);
       return response.data;
-  } catch (error) {
+  } catch (error: any) {
       console.error('Error sending network request to create goal:', error.response ? error.response.data : error.message);
   }
 };
 
-export const createTab = async (tab) => {
-    const postRequest = {
+export const createTab = async (tab: any) => {
+    const postRequest: any = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(tab)
     };
     try {
-        const response = await fetch(`${BASE_URL}/tabs`, postRequest);
+        const response: any = await fetch(`${BASE_URL}/tabs`, postRequest);
         if (!response.ok) {
             console.log('Network response when creating a tab was not OK');
             return;
         } else {
-            const data = await response.json();
+            const data: any = await response.json();
             console.log('Network request to create tab was sent successfully', data)
         }
     } catch (error) {
@@ -42,7 +41,7 @@ export const createTab = async (tab) => {
 
 export const fetchAllTabs = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/tabs`, {
+        const response: any = await fetch(`${BASE_URL}/tabs`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         });
@@ -50,7 +49,7 @@ export const fetchAllTabs = async () => {
             console.log('Network response when fetching tabs was not OK');
             return [];
         }
-        const data = await response.json();
+        const data: any = await response.json();
         console.log('Tabs fetched successfully:', data);
         return data; // This will be an array
     } catch (error) {
@@ -61,7 +60,7 @@ export const fetchAllTabs = async () => {
 
 export const fetchAllGoals = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/storedgoals`);
+      const response: any = await axios.get(`${BASE_URL}/storedgoals`);
       console.log('Goals fetched!')
       return response.data;
     } catch (error) {
@@ -72,17 +71,17 @@ export const fetchAllGoals = async () => {
 
 // EDIT DATA
 
-export const updateGoalProgress = async(name, type, newValue) => {
+export const updateGoalProgress = async(name: any, type: any, newValue: any) => {
   if (newValue === 0) {
     return;
   }
-  const postRequest = {
+  const postRequest: any = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, type, newValue })
   };
   try {
-    const response = await fetch(`${BASE_URL}/storedgoals/status`, postRequest);
+    const response: any = await fetch(`${BASE_URL}/storedgoals/status`, postRequest);
     if (!response.ok) {
       console.log('Network response when storing goal progress was not ok');
       return;
@@ -95,7 +94,7 @@ export const updateGoalProgress = async(name, type, newValue) => {
   }
 }
 
-export const insertListPosition = async(tabName, listName, col) => {
+export const insertListPosition = async(tabName: any, listName: any, col: any) => {
     const postRequest = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -117,7 +116,7 @@ export const insertListPosition = async(tabName, listName, col) => {
 
 // DELETE DATA
 
-export const deleteTab = async (tabName) => {
+export const deleteTab = async (tabName: any) => {
     try {
       const response = await fetch(`${BASE_URL}/tabs/${tabName}`, {
         method: 'DELETE',
@@ -134,9 +133,9 @@ export const deleteTab = async (tabName) => {
     }
   };
 
-  export const deleteGoal = async (goalName, type) => {
+  export const deleteGoal = async (goalName: any, type: any) => {
     try {
-      const response = await fetch(`${BASE_URL}/storedgoals`, {
+      const response: any = await fetch(`${BASE_URL}/storedgoals`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ goalName, type })
@@ -145,16 +144,16 @@ export const deleteTab = async (tabName) => {
         console.log('Failed to delete the goal');
         return;
       }
-      const data = await response.json();
+      const data: any = await response.json();
       console.log('Goal deleted successfully:', data);
     } catch (error) {
       console.log('Error deleting goal:', error);
     }
   };
 
-  export const deleteListPosition = async(tabName, listName) => {
+  export const deleteListPosition = async(tabName: any, listName: any) => {
     try {
-      const response = await fetch(`${BASE_URL}/tabs/${tabName}/position/${listName}`, {
+      const response: any = await fetch(`${BASE_URL}/tabs/${tabName}/position/${listName}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         // body: JSON.stringify({ tabName, listName })
@@ -163,7 +162,7 @@ export const deleteTab = async (tabName) => {
         console.log('Failed to delete list position');
         return;
       }
-      const data = await response.json();
+      const data: any = await response.json();
       console.log('List position deleted successfully:', data);
     } catch (error) {
       console.log('Error deleting list position:', error);
@@ -178,7 +177,7 @@ const resetGoals = async() => {
     // }
 }
 
-const readDate = (date) => {
+const readDate = (date: any) => {
     return date.toLocaleDateString('en-GB', {
        day: '2-digit',
        month: 'long',
