@@ -1,40 +1,39 @@
-import React, { useState, useEffect } from "react";
-import Delete from '../../assets/other/delete-button.png';
+import { useState, useEffect } from "react";
 import OrangeDelete from '../../assets/other/orange-delete-button.png';
 import '../../styles/AddSome.css';
 
-export default function AddSomeBars({listName, finalizeGoals, selectedTab}) {
+export default function AddSomeBars({listName, finalizeGoals, selectedTab}: any) {
 
-    const [goals, setGoals] = useState([{name: '', list: listName, tab: selectedTab.name, type: 'Progress Bar', color: 'turq-gradient', order_no: 1, active: true, complete: false, last_completed: null, current: 0, goal_number: 0, units: ''}])
+    const [goals, setGoals] = useState<any>([{name: '', list: listName, tab: selectedTab.name, type: 'Progress Bar', color: 'turq-gradient', order_no: 1, active: true, complete: false, last_completed: null, current: 0, goal_number: 0, units: ''}])
 
-    const handleGoalNameChange = (index, value) => {
-        const updatedGoals = goals.map((goal, i) => (i === index ? { ...goal, name: value } : goal));
+    const handleGoalNameChange = (index: any, value: any) => {
+        const updatedGoals = goals.map((goal: any, i: any) => (i === index ? { ...goal, name: value } : goal));
         setGoals(updatedGoals);
         console.log(goals);
     };
 
-    const handleGoalNumberChange = (index, value) => {
-        const updatedGoals = goals.map((goal, i) => (i === index ? { ...goal, goal_number: value } : goal));
+    const handleGoalNumberChange = (index: any, value: any) => {
+        const updatedGoals = goals.map((goal: any, i: any) => (i === index ? { ...goal, goal_number: value } : goal));
         setGoals(updatedGoals);
     };
 
-    const handleGoalUnitsChange = (index, value) => {
-        const updatedGoals = goals.map((goal, i) => (i === index ? { ...goal, units: value } : goal));
+    const handleGoalUnitsChange = (index: any, value: any) => {
+        const updatedGoals = goals.map((goal: any, i: any) => (i === index ? { ...goal, units: value } : goal));
         setGoals(updatedGoals);
     };
 
-    const handleGoalColorChange = (index, value) => {
-        const updatedGoals = goals.map((goal, i) => (i === index ? { ...goal, color: value } : goal));
+    const handleGoalColorChange = (index: any, value: any) => {
+        const updatedGoals = goals.map((goal: any, i: any) => (i === index ? { ...goal, color: value } : goal));
         setGoals(updatedGoals);
     };
 
-    function openColorBox(event) {
+    function openColorBox(event: any) {
         const colorChoices = event.target.nextElementSibling;
         colorChoices.style.display = colorChoices.style.display === 'block' ? 'none' : 'block';
     }
 
-    function removeItem(indexToRemove) {
-        const updatedGoals = goals.filter((goal, index) => index !== indexToRemove);
+    function removeItem(indexToRemove: any) {
+        const updatedGoals = goals.filter((goal: any, index: any) => index !== indexToRemove);
         setGoals(updatedGoals);
     }
 
@@ -48,7 +47,7 @@ export default function AddSomeBars({listName, finalizeGoals, selectedTab}) {
         <tr>
         <th> </th><th>Goal name</th><th>Daily Goal</th><th>Units</th><th>Fill</th>
         </tr>
-        {goals.map((goal, index) => (
+        {goals.map((goal: any, index: any) => (
             <tr key={`goal-${index}`}>
                 <td className="remove-by-index" onClick={() => {removeItem(index)}}><img src={OrangeDelete} className="delete-icon" /></td>
                 <td><input type="text" className={`rounded-input name-small-input bar-input ${goal.color}`} value={goal.name} onChange={(e) => handleGoalNameChange(index, e.target.value)}/></td>
@@ -59,7 +58,7 @@ export default function AddSomeBars({listName, finalizeGoals, selectedTab}) {
                     <input type="text" className={`small-input rounded-input ${goal.color}`} value={goal.units} onChange={(e) => handleGoalUnitsChange(index, e.target.value)}></input>
                 </td>
                 <td>
-                    <div className={`color-box ${goal.color}`} value={goal.color} onClick={openColorBox}></div>
+                    <div className={`color-box ${goal.color}`} onClick={openColorBox}></div>
                     <div className="color-choices">
                         <div className="color-option turq-gradient" onClick={() => {handleGoalColorChange(index, 'turq-gradient')}}></div>
                         <div className="color-option orange-gradient" onClick={() => {handleGoalColorChange(index, 'orange-gradient')}}></div>

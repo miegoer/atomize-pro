@@ -1,12 +1,11 @@
-import React from "react";
 import './Task.css'
 import { useSortable } from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 
-export const Task = ({ id, name }) => {
+export const Task = ({ id, name }: any) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
-    const style = {
+    const style: any = {
         transform: CSS.Transform.toString(transform),
         transition: transition || "transform 100ms ease", // Add a smooth transition
         zIndex: transform ? 1000 : "auto", // Elevate when dragging
