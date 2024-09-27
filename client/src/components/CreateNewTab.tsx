@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import Rocket from '../assets/icons/rocket-icon.png';
 import Sprout from '../assets/icons/sprout-icon.png';
@@ -14,7 +14,25 @@ import Lightbulb from '../assets/icons/lightbulb-icon.png';
 import PlaneGlobe from '../assets/icons/plane-globe-icon.png';
 import {createTab} from '../ApiService.jsx';
 
-export default function CreateNewTab({tabs}) {
+interface Tab {
+    name: any;
+    icon: any;
+    col_one?: any | null;
+    col_one_b?: any | null;
+    col_two?: any | null;
+    col_two_b?: any | null;
+    col_three?: any | null;
+    col_three_b?: any | null;
+    order_no: number;
+  }
+  
+
+  interface CreateNewTabProps {
+    tabs: any;
+    
+  }
+
+export default function CreateNewTab({tabs}: any) {
 
     const navigate = useNavigate();
 
@@ -23,9 +41,9 @@ export default function CreateNewTab({tabs}) {
     const [tabName, setTabName] = useState('');
     const [tabData, setTabData] = useState({name: tabName, icon: chosenIcon, col_one: null, col_one_b: null, col_two: null, col_two_b: null, col_three: null, col_three_b: null, order_no: tabs.length + 1})
 
-    const handleTabNameChange = (event) => { setTabName(event.target.value) }
+    const handleTabNameChange = (event: any) => { setTabName(event.target.value) }
 
-    const handleChooseIcon = (icon) => {
+    const handleChooseIcon = (icon: any) => {
         setChosenIcon(icon)
     }
 
@@ -41,7 +59,7 @@ export default function CreateNewTab({tabs}) {
         setTabData({...tabData, name: tabName});
       }, [tabName])
 
-    const handleCreateTab = async(tab) => {
+    const handleCreateTab = async(tab: any) => {
         if (!tabName) {
             alert('Please choose a name for your tab');
             return;
