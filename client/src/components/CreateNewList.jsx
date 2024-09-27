@@ -5,7 +5,7 @@ import LevelsVideo from '../assets/vids/levels-animation.mp4';
 import SetsVideo from '../assets/vids/sets-animation.mp4';
 import ProgressBarVideo from '../assets/vids/progressbar-animation.mp4';
 import '../styles/CreateNewList.css'
-import AddSomeGoals from "./addtolist/AddSomeGoals";
+import AddSomeGoals from "./addtolist/AddSomeGoals.tsx";
 
 export default function CreateNewList({tabs, loadGoals}) {
 

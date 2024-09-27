@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from "react";
 import Delete from '../assets/other/delete-button.png'
 import Edit from '../assets/other/edit-button.png'
-import {deleteTab, deleteGoal, insertListPosition, deleteListPosition} from '../ApiService.jsx';
+import {deleteTab, deleteGoal, insertListPosition, deleteListPosition} from '../ApiService.tsx';
 import '../styles/MakeEdits.css'
 
 export default function MakeEdits({tabs, goals}) {

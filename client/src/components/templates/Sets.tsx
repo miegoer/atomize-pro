@@ -1,13 +1,12 @@
-import {React, useState, useEffect} from "react";
-import { updateGoalProgress } from "../../ApiService";
+import { useState, useEffect} from "react";
+import { updateGoalProgress } from "../../ApiService.js";
 
-export default function Sets({goal}) {
+export default function Sets({goal}: any) {
 
-    const [circleSpacing, setCircleSpacing] = ('standard-space');
-    const [sets, setSets] = useState(goal.sets);
-    const [completedSets, setCompletedSets] = useState(goal.completed_sets);
+    const [sets, setSets] = useState<any>(goal.sets);
+    const [completedSets, setCompletedSets] = useState<any>(goal.completed_sets);
 
-    const setSpacing = (numberOfSets) => {
+    const setSpacing = (numberOfSets: any) => {
         if (numberOfSets > 3) {
             return 'smaller-space';
         }}
@@ -18,7 +17,7 @@ export default function Sets({goal}) {
 
     const handleCompleteSet = () => {
         if (completedSets < sets) {
-            setCompletedSets(prev => prev + 1);
+            setCompletedSets((prev: any) => prev + 1);
         }
     }
 
@@ -30,10 +29,10 @@ export default function Sets({goal}) {
         <div className="set-container">
             <div className="set-name-box">{goal.name}</div>
             <div className="set-tracker">
-                {Array.from({ length: goal.sets }).map((_, index) => (
+                {Array.from({ length: goal.sets }).map((_, index: any) => (
                  <div className={`set-circles ${index < completedSets ? 'complete-set' : ''}`}
                  key={index}
-                 onClick={() => handleCompleteSet(index)}>
+                 onClick={() => handleCompleteSet()}>
                     <span className="rep-number">{goal.reps}</span>
                 </div>
                 ))}
