@@ -1,18 +1,18 @@
-import React, {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef} from "react";
 import '../../styles/ProgressBar.css';
 import { updateGoalProgress } from "../../ApiService";
 
-export default function ProgressBar({ goal }) {
-    const [current, setCurrent] = useState(goal.current);
-    const [progressToAdd, setToAdd] = useState('');
-    const progressBarRef = useRef(null);
-    const progressTextRef = useRef(null);
+export default function ProgressBar({ goal }: any) {
+    const [current, setCurrent] = useState<any>(goal.current);
+    const [progressToAdd, setToAdd] = useState<any>('');
+    const progressBarRef: any = useRef(null);
+    const progressTextRef: any = useRef(null);
   
     useEffect(() => {
       updateGoalProgress(goal.name, goal.type, current);
     }, [current]);
   
-    function updateProgressBar(percentage) {
+    function updateProgressBar(percentage: any) {
       if (progressBarRef.current && progressTextRef.current) {
         progressTextRef.current.textContent = `${current} / ${goal.goal_number} ${goal.units} — ${percentage.toFixed(2)}%`;
         if (percentage <= 100) {
@@ -22,22 +22,22 @@ export default function ProgressBar({ goal }) {
     }
   
     function submitProgress() {
-      setCurrent((prevCurrent) => {
-        const newCurrent = prevCurrent + progressToAdd;
-        const percentage = (newCurrent / goal.goal_number) * 100;
+      setCurrent((prevCurrent: any) => {
+        const newCurrent: any = prevCurrent + progressToAdd;
+        const percentage: any = (newCurrent / goal.goal_number) * 100;
         updateProgressBar(percentage);
         return newCurrent;
       });
       setToAdd('');
     }
   
-    function handleDayProgress(event) {
-      const value = event.target.value;
+    function handleDayProgress(event: any) {
+      const value: any = event.target.value;
       setToAdd(value === '' ? '' : Number(value));
     }
   
     useEffect(() => {
-      const percentage = (current / goal.goal_number) * 100;
+      const percentage: any = (current / goal.goal_number) * 100;
       updateProgressBar(percentage);
     }, [current]);
   

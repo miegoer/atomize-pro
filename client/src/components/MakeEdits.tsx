@@ -1,22 +1,49 @@
-import {React, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import Delete from '../assets/other/delete-button.png'
 import Edit from '../assets/other/edit-button.png'
-import {deleteTab, deleteGoal, insertListPosition, deleteListPosition} from '../ApiService.jsx';
+import {deleteTab, deleteGoal, insertListPosition, deleteListPosition} from '../ApiService.tsx';
 import '../styles/MakeEdits.css'
 
-export default function MakeEdits({tabs, goals}) {
+// Define interfaces for Tab and Goal
+
+interface Tab {
+    goal: any;
+    name: any;
+    icon: any;
+    col_one?: string 
+    col_one_b?: string 
+    col_two?: string 
+    col_two_b?: string 
+    col_three?: string 
+    col_three_b?: string 
+}
+
+interface Goal {
+    name: any;
+    list: any;
+    tab: any;
+    type: any;
+}
+
+interface MakeEditsProps {
+    tabs: any;
+    goals: any;
+}
+
+
+export default function MakeEdits({tabs, goals}: MakeEditsProps) {
 
     // Styling and rendering not fully complete. Will add 'edit' functionalities.
 
-    const [selectedObject, setSelectedObject] = useState([]);
-    const [selectedType, setSelectedType] = useState('');
-    
-    const [selectedTab, setSelectedTab] = useState([]);
-    const [selectedList, setSelectedList] = useState('');
+    const [selectedObject, setSelectedObject] = useState<any>(null);
+    const [selectedType, setSelectedType] = useState<any>('');
+
+    const [selectedTab, setSelectedTab] = useState<any>(null);
+    const [selectedList, setSelectedList] = useState<any>('');
 
     const tabAttributes = ['col_one', 'col_one_b', 'col_two', 'col_two_b', 'col_three', 'col_three_b'];
 
-    const handleSelectObject = (obj) => {
+    const handleSelectObject = (obj: any) => {
         setSelectedObject(obj);
         if (obj.icon) {
             setSelectedType('Tab');
@@ -31,20 +58,20 @@ export default function MakeEdits({tabs, goals}) {
         console.log(obj)
     }
 
-    const handleDelete = (obj) => {
+    const handleDelete = (obj: any) => {
         if (window.confirm(`Are you sure you want to delete "${obj.name}"?`)) {
             if (selectedType === 'Tab') {
-                goals.map(goal => goal.tab === obj.name ? deleteGoal(goal.name, goal.type) : null);
+                goals.map((goal:any) => goal.tab === obj.name ? deleteGoal(goal.name, goal.type) : null);
                 deleteTab(obj.name);
             } else if (selectedType === 'Goal') {
                 const holdList = obj.list;
                 deleteGoal(obj.name, obj.type);
-                const listNotEmpty = goals.some(goal => goal.list === holdList);
+                const listNotEmpty = goals.some((goal: { list: any; }) => goal.list === holdList);
                 if (!listNotEmpty) {
                     deleteListPosition(selectedTab.name, holdList);
                 }
             } else if (selectedType === 'List') {
-                goals.map(goal => goal.list === selectedList ? deleteGoal(goal.name, goal.type) : null);
+                goals.map((goal:any) => goal.list === selectedList ? deleteGoal(goal.name, goal.type) : null);
                 console.log(selectedTab.name, selectedList)
                 deleteListPosition(selectedTab.name, selectedList)
             }
@@ -59,7 +86,7 @@ export default function MakeEdits({tabs, goals}) {
             <div className="all-data-box">
                 <div className="all-stored-items-box">
                     <div className="all-tabs">
-                        {tabs.map(tab => <div className={`selector-box ${selectedObject === tab || selectedTab === tab ? 'item-chosen' : null}`} onClick={()=>{handleSelectObject(tab)}}><img src={tab.icon} className="tab-selector-icon"/><span className="selector-text">{tab.name}</span></div>)}
+                        {tabs.map((tab: {type: any}) => <div className={`selector-box ${selectedObject === tab || selectedTab === tab ? 'item-chosen' : null}`} onClick={()=>{handleSelectObject(tab)}}><img src={tab.icon} className="tab-selector-icon"/><span className="selector-text">{tab.name}</span></div>)}
                     </div>
                 </div>
                 <div className="all-stored-items-box">
@@ -73,7 +100,7 @@ export default function MakeEdits({tabs, goals}) {
                     })}
                 </div>
                 <div className="all-stored-items-box">
-                    {goals.map(goal => goal.list === selectedList ? <div className={`selector-box ${selectedObject === goal ? 'item-chosen' : null}`} onClick={()=>{handleSelectObject(goal)}}><span className="selector-text">{goal.name}</span></div> : null)}
+                    {goals.map((goal:any) => goal.list === selectedList ? <div className={`selector-box ${selectedObject === goal ? 'item-chosen' : null}`} onClick={()=>{handleSelectObject(goal)}}><span className="selector-text">{goal.name}</span></div> : null)}
                 </div>
             </div>
             <div className="edit-options">
