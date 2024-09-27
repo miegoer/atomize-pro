@@ -37,9 +37,9 @@ export default function CreateNewTab({tabs}: any) {
     const navigate = useNavigate();
 
     const allIcons = [Sprout, Sun, PlaneGlobe, Book, Meal, Barbell, MoneyBag, PiggyBank, Star, Rocket, Lightning, Lightbulb]
-    const [chosenIcon, setChosenIcon] = useState('');
-    const [tabName, setTabName] = useState('');
-    const [tabData, setTabData] = useState({name: tabName, icon: chosenIcon, col_one: null, col_one_b: null, col_two: null, col_two_b: null, col_three: null, col_three_b: null, order_no: tabs.length + 1})
+    const [chosenIcon, setChosenIcon] = useState<any>('');
+    const [tabName, setTabName] = useState<any>('');
+    const [tabData, setTabData] = useState<any>({name: tabName, icon: chosenIcon, col_one: null, col_one_b: null, col_two: null, col_two_b: null, col_three: null, col_three_b: null, order_no: tabs.length + 1})
 
     const handleTabNameChange = (event: any) => { setTabName(event.target.value) }
 
