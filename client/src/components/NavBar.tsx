@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom';
 import HomeButton from '../assets/navigation/home-button.png';
 import CreateButton from '../assets/navigation/createnew-button.png';
-<<<<<<< HEAD:client/src/components/NavBar.tsx
-=======
-// import PlanetButton from '../assets/navigation/planet-button.png';
->>>>>>> 46cf65ea8f681fe5d0692d3c698c99b3738d5821:client/src/components/NavBar.jsx
 import EditButton from '../assets/navigation/edit-button.png';
 import '../styles/ProgressBar.css';
 import '../styles/NavBar.css';
