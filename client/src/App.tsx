@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar.tsx';
+import NavBar from './components/NavBar';
 import CreateNew from './components/CreateNew.jsx';
 import CreateNewList from './components/CreateNewList.jsx';
-import CreateNewTab from './components/CreateNewTab.tsx';
+import CreateNewTab from './components/CreateNewTab';
 import CreateNewGoal from './components/CreateNewGoal.jsx';
 import MakeEdits from './components/MakeEdits.jsx';
-import HomePage from './components/HomePage.tsx';
+import HomePage from './components/HomePage';
 import Tab from './components/Tab.jsx';
-import { fetchAllTabs, fetchAllGoals } from "./ApiService.tsx";
+import { fetchAllTabs, fetchAllGoals } from "./ApiService";
 import './App.css'
 
 function App() {
