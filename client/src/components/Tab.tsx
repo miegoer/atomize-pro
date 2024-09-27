@@ -1,18 +1,42 @@
-import {React, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import '../styles/Tab.css';
-import List from "./List.jsx";
+import List from "./List.js";
+
+// Define interfaces for props and state
+
+interface TabType {
+  name: string;
+  col_one?: string;
+  col_one_b?: string;
+  col_two?: string;
+  col_two_b?: string;
+  col_three?: string;
+  col_three_b?: string;
+}
+
+interface GoalType {
+  tab: string;
+  list: string;
+}
+
+interface TabProps {
+  tab: TabType;
+  goals: any;
+}
 
 function BlankPage() {
     return (
       <div id="empty-page-prompt">
         <h4 id="empty-page-text">This page is empty!</h4>Would you like to add a new list now?
-        <Link to="/create-new/list"><button id="empty-page-button">OK &rarr;</button></Link>
+        <Link to="/create-new/list">
+        <button id="empty-page-button">OK &rarr;</button>
+        </Link>
       </div>
     );
   }
 
-export default function Tab({tab, goals}) {
+export default function Tab({tab, goals}: TabProps) {
 
     // Rendering and styling still incomplete
 
@@ -20,14 +44,15 @@ export default function Tab({tab, goals}) {
     const [tabLists, setTabLists] = useState([]);
 
     const sortData = () => {
-      const result = goals.filter(goal => goal.tab === tab.name)
+      const result: any = goals.filter((goal: { tab: string; }) => goal.tab === tab.name)
       setTabGoals(result);
-      const uniqueLists = Array.from(new Set(result.map(goal => goal.list)));
-      setTabLists(uniqueLists);
+
+      const uniqueLists: any = Array.from(new Set(result.map((goal: { list: any; }) => goal.list)));
+        setTabLists(uniqueLists);
     }
         useEffect(() => {
         sortData();
-    }, []);
+    }, [goals, tab.name]);
     
 
     return (
