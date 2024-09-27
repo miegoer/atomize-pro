@@ -1,33 +1,29 @@
-const express = require('express');
-const cors = require("cors");
-const router = require('./router.js');
-const {connectDB} = require('./db.js');
+import express, { Application } from 'express';
+import cors, { CorsOptions } from 'cors';
+import goalRoutes from './src/routes/goal.routes';
+import tabRoutes from './src/routes/tab.routes';
 
-const corsOptions = {
+const corsOptions: CorsOptions = {
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow credentials (like cookies) to be sent
 };
 
-const app = express();
+const app: Application = express();
+const PORT: string | number = process.env.SERVER_PORT || 3000;
 
-// Connect to the database (no need to use app.use)
-connectDB();
-
-const PORT = process.env.PORT || 3000;
-
-// Apply middleware
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use('/api', goalRoutes);
+app.use('/api', tabRoutes);
 
-// Set up the router
-app.use('/api', router);
-
-app.listen(PORT, (err) => {
+app.listen(PORT, (err?: Error) => {
   if (err) {
     console.log(`😞 Something went wrong connecting to the server! ${err}`);
   } else {
     console.log(`🚀 The server is running and listening on port ${PORT}!`);
   }
 });
+
+export default app;

@@ -6,7 +6,11 @@ import List from '../assets/other/list.png';
 import Plan from '../assets/other/plan.png';
 import Tab from '../assets/other/tab.png';
 
-export default function CreateNew({tabs}) {
+interface CreateNewProps {
+    tabs?: any;
+}
+
+export default function CreateNew({tabs}: CreateNewProps) {
 
     return (
         <div className="create-container">
