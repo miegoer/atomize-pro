@@ -5,26 +5,37 @@ import LevelsVideo from '../assets/vids/levels-animation.mp4';
 import SetsVideo from '../assets/vids/sets-animation.mp4';
 import ProgressBarVideo from '../assets/vids/progressbar-animation.mp4';
 import '../styles/CreateNewList.css'
-import AddSomeGoals from "./addtolist/AddSomeGoals.tsx";
+import AddSomeGoals from "./addtolist/AddSomeGoals";
+import Tab from "./Tab";
 
-export default function CreateNewList({tabs, loadGoals}) {
+interface Tab {
+    name: any;
+    icon: any;
+}
+
+interface CreateNewListProps {
+    tabs: any;
+    loadGoals: any;
+}
+
+export default function CreateNewList({tabs, loadGoals}: CreateNewListProps) {
 
     const [selectedTab, setSelectedTab] = useState([]);
 
-    const [listName, setListName] = useState('');
-    const [template, setTemplate] = useState('');
-    const [hoveredTemplate, setHoveredTemplate] = useState('');
-    const [firstStepDone, setFirstStepDone] = useState(false);
+    const [listName, setListName] = useState<any>('');
+    const [template, setTemplate] = useState<any>('');
+    const [hoveredTemplate, setHoveredTemplate] = useState<any>('');
+    const [firstStepDone, setFirstStepDone] = useState<boolean>(false);
 
     const listTypes = ['Simple List', 'Progress Bar', 'Sets', 'Levels', 'Mixed']
 
-    const handleNameChange = (event) => { setListName(event.target.value) }
+    const handleNameChange = (event: any) => { setListName(event.target.value) }
 
-    const handleChooseTemplate = (template) => { setTemplate(template) }
+    const handleChooseTemplate = (template:any) => { setTemplate(template) }
 
-    const handleHover = (template) => { setHoveredTemplate(template) }
+    const handleHover = (template:any) => { setHoveredTemplate(template) }
 
-    const handleAddSomeGoals = (event) => {
+    const handleAddSomeGoals = (event:any) => {
         event.preventDefault();
         if (!listName) {
             alert('Please give your list a name')
@@ -41,7 +52,7 @@ export default function CreateNewList({tabs, loadGoals}) {
         setFirstStepDone(true);
     }
 
-    const handleSelectTab = (selectedTabIcon) => {
+    const handleSelectTab = (selectedTabIcon: any) => {
         setSelectedTab(selectedTabIcon)
         console.log(selectedTab)
     }
@@ -63,7 +74,7 @@ export default function CreateNewList({tabs, loadGoals}) {
                 <span className="form-text">ADD TO:</span>
                 <div className="chosen-tab">
                     {tabs.length > 0 ? (
-                        tabs.map(tab => (
+                        tabs.map((tab:any) => (
                             <img
                                 key={tab.name}  // Ensure to add a unique key
                                 src={tab.icon}
