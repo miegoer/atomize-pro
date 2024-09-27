@@ -1,37 +1,52 @@
-import {React, useState} from "react";
+import React, {useState} from "react";
 import AddSomeSimple from "./addtolist/AddSomeSimple";
 import AddSomeGoals from "./addtolist/AddSomeGoals";
 import AddSomeBars from "./addtolist/AddSomeBars";
 
-export default function CreateNewGoal({tabs}) {
+interface Tab {
+    name: string;
+    icon: string;
+    col_one?: string;
+    col_one_b?: string;
+    col_two?: string;
+    col_two_b?: string;
+    col_three?: string;
+    col_three_b?: string;
+}
+
+interface CreateNewGoal{
+    tabs?: any; 
+}
+
+export default function CreateNewGoal({tabs}: CreateNewGoal) {
 
     // This component is not yet complete and will not run as expected.
 
-    const [selectedTab, setSelectedTab] = useState([]);
-    const [selectedList, setSelectedList] = useState('');
-    const [goalName, setGoalName] = useState('');
-    const [goalColor, setGoalColor] = useState('purple');
-    const [template, setTemplate] = useState('Simple List')
+    const [selectedTab, setSelectedTab] = useState<any>([]);
+    const [selectedList, setSelectedList] = useState<any>('');
+    const [goalName, setGoalName] = useState<any>('');
+    const [goalColor, setGoalColor] = useState<any>('purple');
+    const [template, setTemplate] = useState<any>('Simple List')
 
     const listTypes = ['Simple List', 'Levels', 'Sets', 'Progress Bar']
 
-    const handleSelectTab = (selectedTabIcon) => {
+    const handleSelectTab = (selectedTabIcon: any) => {
         setSelectedTab(selectedTabIcon)
     }
 
-    const handleSelectList = (listName) => {
+    const handleSelectList = (listName:any) => {
         setSelectedList(listName);
     }
 
-    const handleNameChange = (event) => { setGoalName(event.target.value) }
+    const handleNameChange = (event:any) => { setGoalName(event.target.value) }
 
-    const handleGoalColorChange = (value) => {
+    const handleGoalColorChange = (value:any) => {
         setGoalColor(value)
     };
 
-    const handleChooseTemplate = (template) => { setTemplate(template) }
+    const handleChooseTemplate = (template:any) => { setTemplate(template) }
 
-    function openColorBox(event) {
+    function openColorBox(event:any) {
         const colorChoices = event.target.nextElementSibling;
         colorChoices.style.display = colorChoices.style.display === 'block' ? 'none' : 'block';
     }
@@ -45,7 +60,7 @@ export default function CreateNewGoal({tabs}) {
                 <div className="left-col-create">
                     <span className="form-text">CHOOSE TAB:</span>
                     <div className="choose-tab-for-goal">
-                        {tabs.length > 0 ? (tabs.map(tab => (
+                        {tabs.length > 0 ? (tabs.map((tab: any) => (
                             <img key={tab.name} src={tab.icon}
                                 className={`nav-icon ${selectedTab === tab ? 'chosen-tab-selected' : ''}`}
                                 onClick={() => { handleSelectTab(tab); }}/>))) : (<p>No existing tabs!</p>)}</div></div>
@@ -65,7 +80,8 @@ export default function CreateNewGoal({tabs}) {
                 <div className="template-options" id ="goal-direct">
                     {listTypes.map(type => (
                         <>
-                        <span className={`${template === type ? 'template-item-chosen' : 'template-item'}`} onClick={()=>{handleChooseTemplate(type)}} onMouseEnter={()=>{handleHover(type)}}>{type}</span>
+                        <span className={`${template === type ? 'template-item-chosen' : 'template-item'}`} onClick={() => handleChooseTemplate(type)}>{type}</span>
+
                         </>
                     ))}
                 </div>
@@ -75,10 +91,11 @@ export default function CreateNewGoal({tabs}) {
         </tr>
             <tr>
                 <td>
-                    <input type="text" className={`name-goal name-simple ${goalColor}`} value={goalName} onChange={(e) => handleNameChange(index, e.target.value)}/>
+                <input type="text" className={`name-goal name-simple ${goalColor}`} value={goalName} onChange={handleNameChange} />
+
                 </td>
                 <td>
-                    <div className={`color-box ${goalColor}`} value={goalColor} onClick={openColorBox} id="color-box-goal"></div>
+                    <div className={`color-box ${goalColor}`} onClick={openColorBox} id="color-box-goal"></div>
                     <div className="color-choices">
                         <div className="color-option purple" onClick={() => {handleGoalColorChange('purple')}}></div>
                         <div className="color-option yellow-green" onClick={() => {handleGoalColorChange('yellow-green')}}></div>
