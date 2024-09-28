@@ -12,7 +12,7 @@ import PiggyBank from '../assets/icons/piggybank-icon.png';
 import Lightning from '../assets/icons/lightning-icon.png';
 import Lightbulb from '../assets/icons/lightbulb-icon.png';
 import PlaneGlobe from '../assets/icons/plane-globe-icon.png';
-import {createTab} from '../ApiService.jsx';
+import {createTab} from '../ApiService';
 
 interface Tab {
     name: string;
@@ -81,7 +81,7 @@ export default function CreateNewTab(props: CreateNewTabProps) {
     }
 
     return (
-        <div className="new-tab-container">
+        <div data-testid="create-new-tab" className="new-tab-container">
             <span className="create-tab-text">Name your tab</span>
             <input type="text" id="name-tab" value={tabName} onChange={handleTabNameChange}></input>
             <span className="create-tab-text">Choose your tab icon:</span>
