@@ -12,6 +12,7 @@ interface AddSomeGoalsProps {
     template: any
     selectedTab: any
     loadGoals: any
+    tabs: any
 }
 
 export default function AddSomeGoals(props: AddSomeGoalsProps) {
