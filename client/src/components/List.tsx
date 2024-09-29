@@ -2,9 +2,16 @@ import React, {useState, useEffect} from "react";
 import Goal from "./Goal";
 
 interface GoalType {
-    name: string;
-    type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets';
-    list: string;
+    name: string
+    type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets'
+    list: string
+    color: string
+    active: boolean
+    complete: boolean
+    id: number
+    last_completed: any
+    order_no: number
+    tab: string
 }
 
 interface ListType {
