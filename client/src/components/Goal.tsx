@@ -6,8 +6,16 @@ import Sets from "./templates/Sets.jsx";
 
 interface GoalProps{
         goal: {
-            type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets';
-            [key: string]: any;
+            name: string
+            type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets'
+            list: string
+            color: string
+            active: boolean
+            complete: boolean
+            id: number
+            last_completed: any
+            order_no: number
+            tab: string
         };
         blockCount?: number;
 }

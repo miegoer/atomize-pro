@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { createTab } from '../ApiService';
-import exp from 'constants';
 
 jest.mock('../ApiService', () => ({
   createTab: jest.fn(), // Mock createTab function

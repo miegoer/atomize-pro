@@ -11,4 +11,6 @@ export default{
     '^.+\\.jsx?$': 'babel-jest',
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+  moduleDirectories: ['node_modules', 'src'],
+  roots: ['<rootDir>/src'],
 };
