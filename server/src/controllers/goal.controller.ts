@@ -8,7 +8,7 @@ import { GoalRequestBody } from '../interfaces/goal.interface';
 
 export const saveGoals = async (req: Request, res: Response): Promise<void> => {
   const { name, list, tab, color, order_no, active, complete, last_completed, type }: GoalRequestBody = req.body;
-
+  console.log(req.body);
   try {
     if (!name || !list || !tab || !color || !type) {
       res.status(400).json({ message: 'Missing required fields' });
@@ -29,20 +29,20 @@ export const saveGoals = async (req: Request, res: Response): Promise<void> => {
       case 'Progress Bar':
         tableName = 'goals.progbars';
         const { current, goal_number, units } = req.body;
-        goalFields = [...goalFields, 'current', 'goal_number', 'units'];
-        goalValues = [...goalValues, current, goal_number, units];
+        goalFields = ['name', 'list', 'tab', 'color', 'order_no', 'active', 'complete', 'last_completed', 'type', 'current', 'goal_number', 'units'];
+        goalValues = [name, list, tab, color, order_no, active, complete, last_completed, type, current, goal_number, units];
         break;
       case 'Levels':
         tableName = 'goals.levels';
         const { level } = req.body;
-        goalFields = [...goalFields, 'level'];
-        goalValues = [...goalValues, level];
+        goalFields = ['name', 'list', 'tab', 'color', 'order_no', 'active', 'complete', 'last_completed', 'type', 'level'];
+        goalValues = [name, list, tab, color, order_no, active, complete, last_completed, type, level];
         break;
       case 'Sets':
         tableName = 'goals.sets';
         const { sets, reps, completed_sets } = req.body;
-        goalFields = [...goalFields, 'sets', 'reps', 'completed_sets'];
-        goalValues = [...goalValues, sets, reps, completed_sets];
+        goalFields = ['name', 'list', 'tab', 'color', 'order_no', 'active', 'complete', 'last_completed', 'type', 'sets', 'reps', 'completed_sets'];
+        goalValues = [name, list, tab, color, order_no, active, complete, last_completed, type, sets, reps, completed_sets];
         break;
       default:
         res.status(400).json({ message: 'Invalid goal type' });

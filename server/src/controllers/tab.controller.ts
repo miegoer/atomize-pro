@@ -128,6 +128,7 @@ export const deleteListPos = async (req: Request, res: Response): Promise<void> 
 };
 
 export const insertListPos = async (req: any, res: any) => {
+  console.log('req.body', req.body);
   const { tabName, listName, col } = req.body;
   const validColumns = ['col_one', 'col_one_b', 'col_two', 'col_two_b', 'col_three', 'col_three_b'];
   if (!validColumns.includes(col)) {
