@@ -111,7 +111,8 @@
   },
   "include": [
     "client/src/**/*",
-    "server/src/**/*"
+    "server/src/**/*",
+    "cypress/**/*"
   ],
   "exclude": [
     "node_modules",

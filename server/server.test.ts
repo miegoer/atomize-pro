@@ -1,6 +1,7 @@
 import request from 'supertest';
 import app from './index';
 import client from './src/config/dbConfig';
+import { expect } from '@jest/globals';
 
 const baseUrl = 'http://localhost:3000';
 
