@@ -13,7 +13,6 @@ import Lightning from '../assets/icons/lightning-icon.png';
 import Lightbulb from '../assets/icons/lightbulb-icon.png';
 import PlaneGlobe from '../assets/icons/plane-globe-icon.png';
 import {createTab} from '../ApiService';
-import { url } from "inspector";
 
 interface Tab {
     name: string;
@@ -43,7 +42,6 @@ export default function CreateNewTab(props: CreateNewTabProps) {
     const handleTabNameChange = (event: React.ChangeEvent<HTMLInputElement>) => { setTabName(event.target.value) }
 
     const handleChooseIcon = (icon: string) => {
-        console.log("icon:", icon)
         setChosenIcon(icon)
     }
 
@@ -60,7 +58,6 @@ export default function CreateNewTab(props: CreateNewTabProps) {
       }, [tabName])
 
     const handleCreateTab = async(tab: Tab) => {
-        console.log("handleCreateTab", tab);
         if (!tabName) {
             alert('Please choose a name for your tab');
             return;
