@@ -6,6 +6,7 @@ const BASE_URL = 'http://localhost:3000/api'
 
 export const createGoal = async (goal: any) => {
   try {
+      console.log('goal api', goal)
       const response = await axios.post(`${BASE_URL}/storedgoals`, goal, {
           headers: { 'Content-Type': 'application/json' }
       });

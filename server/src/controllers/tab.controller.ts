@@ -126,3 +126,23 @@ export const deleteListPos = async (req: Request, res: Response): Promise<void> 
     res.status(500).json({ message: 'Server error when deleting list' });
   }
 };
+
+export const insertListPos = async (req: any, res: any) => {
+  console.log('req.body', req.body);
+  const { tabName, listName, col } = req.body;
+  const validColumns = ['col_one', 'col_one_b', 'col_two', 'col_two_b', 'col_three', 'col_three_b'];
+  if (!validColumns.includes(col)) {
+      return res.status(400).json({ message: 'Invalid column name' });
+  }
+  const query = `UPDATE userinfo.tabs SET ${col} = $1 WHERE name = $2 RETURNING *`;
+  try {
+      const result = await client.query(query, [listName, tabName]);
+      if (result.rowCount === 0) {
+          return res.status(404).json({ message: 'Tab not found' });
+      }
+      res.status(200).json(result.rows[0]);
+  } catch (error) {
+      console.error('Error updating tab:', error);
+      res.status(500).json({ message: 'Server error while updating the tab' });
+  }
+}
