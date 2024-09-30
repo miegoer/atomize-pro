@@ -12,6 +12,7 @@ interface AddSomeGoalsProps {
     template: any
     selectedTab: any
     loadGoals: any
+    tabs: any
 }
 
 export default function AddSomeGoals(props: AddSomeGoalsProps) {
@@ -41,6 +42,7 @@ export default function AddSomeGoals(props: AddSomeGoalsProps) {
     const handleSubmit = async (goals: any) => {
         console.log(goals)
         try {
+            console.log('goals', goals)
             await Promise.all(goals.map((goal: any) => createGoal(goal)));
             console.log('All goals have been submitted successfully');
             try {

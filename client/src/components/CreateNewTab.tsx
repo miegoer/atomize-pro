@@ -15,54 +15,72 @@ import PlaneGlobe from '../assets/icons/plane-globe-icon.png';
 import {createTab} from '../ApiService';
 
 interface Tab {
-    name: any;
-    icon: any;
-    col_one?: any | null;
-    col_one_b?: any | null;
-    col_two?: any | null;
-    col_two_b?: any | null;
-    col_three?: any | null;
-    col_three_b?: any | null;
+    name: string;
+    icon: string;
+    col_one?: string | null;
+    col_one_b?: string | null;
+    col_two?: string | null;
+    col_two_b?: string | null;
+    col_three?: string | null;
+    col_three_b?: string | null;
     order_no: number;
   }
   
-
   interface CreateNewTabProps {
-    tabs: any;
-    
+    tabs: Tab[];
   }
 
-export default function CreateNewTab({tabs}: any) {
-
+export default function CreateNewTab(props: CreateNewTabProps) {
     const navigate = useNavigate();
+    const allIcons: { url: string; name: string }[] = [
+        {url: Rocket, name: 'Rocket'}, 
+        {url: Sprout, name: 'Sprout'}, 
+        {url: Sun, name: 'Sun'}, 
+        {url: PlaneGlobe, name: 'PlaneGlobe'}, 
+        {url: Book, name: 'Book'}, 
+        {url: Meal, name: 'Meal'}, 
+        {url: Barbell, name: 'Barbell'}, 
+        {url: MoneyBag, name: 'MoneyBag'}, 
+        {url: PiggyBank, name: 'PiggyBank'}, 
+        {url: Star, name: 'Star'}, 
+        {url: Lightning, name: 'Lightning'}, 
+        {url: Lightbulb, name: 'Lightbulb'}
+    ];
+    const [chosenIcon, setChosenIcon] = useState<string>('');
+    const [tabName, setTabName] = useState<string>('');
+    const [tabData, setTabData] = useState<Tab>({
+        name: tabName, 
+        icon: chosenIcon, 
+        col_one: null, 
+        col_one_b: null, 
+        col_two: null, 
+        col_two_b: null, 
+        col_three: null, 
+        col_three_b: null, 
+        order_no: props.tabs.length + 1
+    });
 
-    const allIcons = [Sprout, Sun, PlaneGlobe, Book, Meal, Barbell, MoneyBag, PiggyBank, Star, Rocket, Lightning, Lightbulb]
-    const [chosenIcon, setChosenIcon] = useState<any>('');
-    const [tabName, setTabName] = useState<any>('');
-    const [tabData, setTabData] = useState<any>({name: tabName, icon: chosenIcon, col_one: null, col_one_b: null, col_two: null, col_two_b: null, col_three: null, col_three_b: null, order_no: tabs.length + 1})
+    // for saving tab name in state as its being input.
+    const handleTabNameChange = (event: React.ChangeEvent<HTMLInputElement>) => { setTabName(event.target.value) };
 
-    const handleTabNameChange = (event: any) => { setTabName(event.target.value) }
-    const handleTabNameChange = (event: any) => { setTabName(event.target.value) }
-
-    const handleChooseIcon = (icon: any) => {
-    const handleChooseIcon = (icon: any) => {
+    const handleChooseIcon = (icon: string) => {
         setChosenIcon(icon)
-    }
+    };
 
+    // deal with spaces in tab name for url
     const findPath = () => {
         return tabData.name.replace(/\s+/g, '-');
-    }
+    };
 
+    // update complete tab data on name or chosen icon change
     useEffect(() => {
         setTabData({...tabData, icon: chosenIcon});
       }, [chosenIcon])
-
     useEffect(() => {
         setTabData({...tabData, name: tabName});
       }, [tabName])
 
-    const handleCreateTab = async(tab: any) => {
-    const handleCreateTab = async(tab: any) => {
+    const handleCreateTab = async(tab: Tab) => {
         if (!tabName) {
             alert('Please choose a name for your tab');
             return;
@@ -72,25 +90,28 @@ export default function CreateNewTab({tabs}: any) {
             return;
         }
         try {
+            // save tab to DB and navigate to new tab page
             await createTab(tab);
-            console.log('New tab has been submitted succesfully');
-            const path = findPath();
+            const path: string = findPath();
             navigate(`${path}`);
             window.location.reload();
+
         } catch (error) {
             console.log('Error submitting tab:', error);
         }       
-    }
+    };
 
     return (
-        <div className="new-tab-container">
+        <div data-testid="create-new-tab" className="new-tab-container">
             <span className="create-tab-text">Name your tab</span>
             <input type="text" id="name-tab" value={tabName} onChange={handleTabNameChange}></input>
             <span className="create-tab-text">Choose your tab icon:</span>
             <div className="icon-list">
-                {allIcons.map((icon: any) => <img src={icon} className={`icon-choice ${chosenIcon === icon ? 'icon-chosen' : 'null'}`} onClick={() => {handleChooseIcon(icon)}}/>)}
+                {allIcons.map((icon: { url: string; name: string }) => 
+                    <img src={icon.url} key={icon.name} data-testid={icon.name} className={`icon-choice ${chosenIcon === icon.url ? 'icon-chosen' : 'null'}`} onClick={() => {handleChooseIcon(icon.url)}}/>
+                )}
             </div>
             <button id="submit-new-tab" onClick={()=> {handleCreateTab(tabData)}}>Create Tab</button>
         </div>
     )
-}
+};
