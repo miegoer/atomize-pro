@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 **/.env
 server/.env
-.env
 
 # db settings
 db.js
