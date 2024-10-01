@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import '../styles/Tab.css';
-import List from "./List.js";
+import List from "./List";
 
 // Define interfaces for props and state
 

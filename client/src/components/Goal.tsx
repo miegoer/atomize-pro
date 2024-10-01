@@ -1,8 +1,8 @@
 import React from "react";
-import SimpleGoal from "./templates/SimpleGoal.jsx";
-import ProgressBar from "./templates/ProgressBar.jsx";
-import LevelsBlock from "./templates/LevelsBlock.jsx";
-import Sets from "./templates/Sets.jsx";
+import SimpleGoal from "./templates/SimpleGoal";
+import ProgressBar from "./templates/ProgressBar";
+import LevelsBlock from "./templates/LevelsBlock";
+import Sets from "./templates/Sets";
 
 interface GoalProps{
         goal: {
