@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {DndContext, useDraggable, useDroppable, rectIntersection, pointerWithin} from '@dnd-kit/core';
-import { Column } from "./dragdrop/Column.jsx";
+import { Column } from "./dragdrop/Column.tsx";
 
 interface DroppableProps {
     id: any;

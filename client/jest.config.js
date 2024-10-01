@@ -1,4 +1,4 @@
-export default{
+export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleNameMapper: {

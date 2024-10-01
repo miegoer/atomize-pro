@@ -111,6 +111,7 @@
   },
   "include": [
     "client/src/**/*",
+    "client/src/setupTests.ts",
     "server/src/**/*",
     "cypress/**/*"
   ],

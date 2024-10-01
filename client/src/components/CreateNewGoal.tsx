@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import AddSomeSimple from "./addtolist/AddSomeSimple";
-import AddSomeGoals from "./addtolist/AddSomeGoals";
-import AddSomeBars from "./addtolist/AddSomeBars";
+import {React, useState} from "react";
+import AddSomeSimple from "./addtolist/AddSomeSimple.tsx";
+import AddSomeGoals from "./addtolist/AddSomeGoals.tsx";
+import AddSomeBars from "./addtolist/AddSomeBars.tsx";
 
 interface Tab {
     name: string;
