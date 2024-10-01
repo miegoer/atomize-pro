@@ -60,7 +60,7 @@ export default function Tab({tab, goals}: TabProps) {
         <h2 className="tab-header">⸻ {tab.name} ⸻</h2>
         {!tab.col_one && !tab.col_one_b && !tab.col_two && !tab.col_two_b && !tab.col_three && !tab.col_three_b ? <div className="blank-prompt-container"><BlankPage /></div> : 
             <div className="all-lists-container">
-                {tabLists.map(list => <List tab={tab} list={list} tabGoals={tabGoals}/>)}
+                {tabLists.map(list => <List key={tab.name} tab={tab} list={list} tabGoals={tabGoals}/>)}
             </div>}
       </>
     )

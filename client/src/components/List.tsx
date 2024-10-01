@@ -1,18 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Goal from "./Goal";
-
-interface GoalType {
-    name: string
-    type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets'
-    list: string
-    color: string
-    active: boolean
-    complete: boolean
-    id: number
-    last_completed: any
-    order_no: number
-    tab: string
-}
+import {SetGoal} from "./interfaces/GoalType";
 
 interface ListType {
     col_one: string;
@@ -31,7 +19,7 @@ export default function List({list, tabGoals, tab}: ListProps) {
     // Rendering and styling still incomplete
 
     // State to hold filtered goals
-    const [listGoals, setListGoals] = useState<GoalType[]>([]);
+    const [listGoals, setListGoals] = useState<SetGoal[]>([]);
 
     let blockCount = 0;
 
@@ -51,11 +39,11 @@ export default function List({list, tabGoals, tab}: ListProps) {
     return (
         <div className="list-container" 
         id = {`${tab.col_one === list ? 'col1' : 
-                 tab.col_two === list ? 'col2' : 'col3' }`}>
+                tab.col_two === list ? 'col2' : 'col3' }`}>
             
             <div id="list-heading">{list}</div>
             <div className="goal-content-container">
-                {listGoals.map(goal => <Goal key={goal.name} goal={goal} blockCount={blockCount}/>)}
+                {listGoals.map((goal,index) => <Goal key={index} goal={goal} />)}
             </div>
 
         </div>

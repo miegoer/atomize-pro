@@ -1,82 +1,72 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Tab from '../components/Tab';
+import Tab from '../components/Tab'; // Adjust the import path as needed
 
-interface TabType {
-  name: string;
-  col_one?: string;
-  col_one_b?: string;
-  col_two?: string;
-  col_two_b?: string;
-  col_three?: string;
-  col_three_b?: string;
-}
+describe("Tab Component", () => {
+  const tabData = {
+    name: 'Tab 1',
+    col_one: 'Content 1',
+    col_two: 'Content 2',
+    col_three: 'Content 3'
+  };
 
-interface GoalType {
-  tab: string;
-  list: string;
-}
+  const goalsData = [
+    { tab: 'Tab 1', list: 'List 1' },
+    { tab: 'Tab 1', list: 'List 2' },
+    { tab: 'Tab 2', list: 'List 3' },
+  ];
 
-const mockTab: TabType = {
-  name: 'Gym',
-  col_one: 'list 1',
-};
-
-const mockGoals: GoalType[] = [
-  { tab: 'Gym', list: 'List 1' },
-  { tab: 'Gym', list: 'List 2' },
-];
-
-describe('Testing Tab Component', () => {
-  test('check if tab title exists', () => {
+  it('should render the tab header correctly', () => {
     render(
       <Router>
-        <Tab tab={mockTab} goals={mockGoals} />
+        <Tab tab={tabData} goals={[]} />
       </Router>
     );
 
-    expect(screen.getByText(/Gym/)).toBeInTheDocument();
+    const headerElement = screen.getByText(/⸻ Tab 1 ⸻/i);
+    expect(headerElement).toBeInTheDocument();
   });
 
-  test('check if Goal with list exists', () => {
-    const { container } = render(
+  it('should display blank page prompt if no columns are provided', () => {
+    const blankTabData = { name: 'Empty Tab' };
+
+    render(
       <Router>
-        <Tab tab={mockTab} goals={mockGoals} />
+        <Tab tab={blankTabData} goals={[]} />
       </Router>
     );
-    const title = container.querySelector('.tab-header');
-    expect(title).toBeInTheDocument();
 
-    const lists = container.querySelector('.all-lists-container');
-    expect(lists).toBeInTheDocument();
+    const blankPrompt = screen.getByText(/This page is empty!/i);
+    expect(blankPrompt).toBeInTheDocument();
   });
 
-  test('check if Goal exists , but not the lists', () => {
-    const  emptyTab : TabType = { name: 'EmptyTab'};
-    const { container } = render(
+  it('should display a link to create a new list on blank page', () => {
+    const blankTabData = { name: 'Empty Tab' };
+
+    render(
       <Router>
-        <Tab tab={emptyTab} goals={[]} />
+        <Tab tab={blankTabData} goals={[]} />
       </Router>
     );
-    const title = container.querySelector('.tab-header');
-    expect(title).toBeInTheDocument();
 
-    const lists = container.querySelector('.all-lists-container');
-    expect(lists).not.toBeInTheDocument();
+    const linkElement = screen.getByRole('link', { name: /OK →/i });
+    expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveAttribute('href', '/create-new/list');
   });
 
-
-  test('check if lists exist', () => {
-    const { container } = render(
+  it('should display lists on the tab 1', () => {
+    render(
       <Router>
-        <Tab tab={mockTab} goals={mockGoals} />
+        <Tab tab={tabData} goals={goalsData} />
       </Router>
     );
 
-    const tabHeader = container.querySelector('.all-lists-container');
-    expect(tabHeader).toBeInTheDocument();
+    const prompt = screen.getByText(/List 1/i);
+    expect(prompt).toBeInTheDocument();
+    const prompt2 = screen.queryByText(/List 4/i);
+    expect(prompt2).toBeNull();
   });
 
-  
 });

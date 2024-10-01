@@ -1,23 +1,9 @@
 import {useState, useEffect} from "react";
 import '../../styles/SimpleGoal.css';
 import { updateGoalProgress } from "../../ApiService";
+import {GoalAll} from "../interfaces/GoalType";
 
-interface GoalType {
-    goal:{
-    name: string
-    type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets'
-    list: string
-    color: string
-    active: boolean
-    complete: boolean
-    id: number
-    last_completed: any
-    order_no: number
-    tab: string
-    }
-}
-
-export default function SimpleGoal({goal}: GoalType) {
+export default function SimpleGoal({goal}: GoalAll) {
 
     const [goalStatus, setGoalStatus] = useState<boolean>(goal.complete);
 
@@ -31,7 +17,7 @@ export default function SimpleGoal({goal}: GoalType) {
         }
     }
 
-    const renderSimpleGoal = ({goal}: GoalType) => {
+    const renderSimpleGoal = ({goal}: GoalAll) => {
         const goalClass = goal.color === 'red' ? 'simple-red' : goal.color === 'purple' ? 'simple-purple' : 'simple-orange';
         return (
             <div className='simple-container' data-testid="simple-goal">

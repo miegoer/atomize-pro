@@ -3,24 +3,9 @@ import SimpleGoal from "./templates/SimpleGoal";
 import ProgressBar from "./templates/ProgressBar";
 import LevelsBlock from "./templates/LevelsBlock";
 import Sets from "./templates/Sets";
+import {GoalAll} from "./interfaces/GoalType";
 
-interface GoalProps{
-        goal: {
-            name: string
-            type: 'Simple List' | 'Progress Bar' | 'Levels' | 'Sets'
-            list: string
-            color: string
-            active: boolean
-            complete: boolean
-            id: number
-            last_completed: any
-            order_no: number
-            tab: string
-        };
-        blockCount?: number;
-}
-
-export default function Goal({goal, blockCount}: GoalProps) {
+export default function Goal({goal}: GoalAll) {
 
     return (
         <div className="goal-container">
